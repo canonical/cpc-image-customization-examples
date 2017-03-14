@@ -8,3 +8,5 @@ install:
     - pip install -r requirements.txt
 script:
     make html spelling
+after_failure:
+    cat build/spelling/output.txt
