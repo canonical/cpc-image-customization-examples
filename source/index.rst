@@ -19,6 +19,9 @@ customized to suite the needs and requirements of cloud partners.
    :maxdepth: 2
    :caption: Contents:
 
+   methods
+   pre-boot
+   first-boot
 
 
 Indexes and tables
