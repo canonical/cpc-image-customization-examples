@@ -12,7 +12,7 @@ Welcome to cpc-image-customization-examples's documentation!
 
 
 
-Indices and tables
+Indexes and tables
 ==================
 
 * :ref:`genindex`
