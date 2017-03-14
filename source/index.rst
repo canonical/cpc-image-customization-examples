@@ -8,7 +8,7 @@ CPC Image Customization Examples
 
 This documentation provides examples of the ways in which the base
 Ubuntu cloud images from http://cloud-images.ubuntu.com can be
-customized to suite the needs and requirements of cloud partners.
+customized to suit the needs and requirements of cloud partners.
 
 .. note::
     This documentation is not intended for use by end-users of clouds,
