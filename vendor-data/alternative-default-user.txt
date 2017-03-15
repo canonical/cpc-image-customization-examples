@@ -1,0 +1,2 @@
+#cloud-config
+user: new-default-user

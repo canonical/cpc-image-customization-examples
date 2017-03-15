@@ -2,6 +2,7 @@ bootable
 bzr
 chroot'd
 cpc
+metadata
 pre
 uninstall
 unmounts
