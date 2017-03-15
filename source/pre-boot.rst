@@ -14,17 +14,18 @@ Basic ``mount-image-call-back`` Usage
 -------------------------------------
 
 ``mount-image-callback`` mounts an image in a temporary directory,
-executes a command and then unmounts it.  It provides the ``mchroot``
-helper, which allows you to perform commands chroot'd in to the mounted
-image.  This is the primary mechanism we will use to perform pre-boot
-customization.
+executes a command and then unmounts it.  We will mostly use ``chroot
+_MOUNTPOINT_``, which allows us to run commands as if the mounted image
+is our root (``mount-image-callback`` will substitute the path to the
+mounted image for ``_MOUNTPOINT_``).  This is the primary mechanism we
+will use to perform pre-boot customization.
 
 The below snippet fetches the latest xenial release image from
-http://cloud-images.ubuntu.com to ``xenial.img`` and uses the
-``mchroot`` helper to run a command within that image::
+http://cloud-images.ubuntu.com to ``xenial.img`` and uses
+``chroot _MOUNTPOINT_`` to run a command within that image::
 
     $ wget -q http://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.img -O xenial.img
-    $ sudo mount-image-callback xenial.img -- mchroot cat /etc/cloud/build.info
+    $ sudo mount-image-callback xenial.img -- chroot _MOUNTPOINT_ cat /etc/cloud/build.info
     build_name: server
     serial: 20170311
 
@@ -53,30 +54,30 @@ running operating system to discover grub boot entries (if you don't do
 this then all instances in your cloud will have entries for your
 laptop's disks!)::
 
-    $ sudo mount-image-callback xenial.img -- mchroot mv /etc/grub.d/30_os-prober /tmp
+    $ sudo mount-image-callback xenial.img -- chroot _MOUNTPOINT_ mv /etc/grub.d/30_os-prober /tmp
 
 Once you've done this, you can install the generic kernel::
 
-    $ sudo mount-image-callback --system-resolvconf xenial.img -- mchroot apt update
-    $ sudo mount-image-callback --system-resolvconf --system-mounts xenial.img -- mchroot apt install -y linux-generic
+    $ sudo mount-image-callback --system-resolvconf xenial.img -- chroot _MOUNTPOINT_ apt update
+    $ sudo mount-image-callback --system-resolvconf --system-mounts xenial.img -- chroot _MOUNTPOINT_ apt install -y linux-generic
 
 This, however, will leave the virtual kernel installed in the image, so
 you will probably also want to uninstall it::
 
-    $ sudo mount-image-callback --system-resolvconf xenial.img -- mchroot apt purge -y linux-virtual
-    $ sudo mount-image-callback --system-resolvconf xenial.img -- mchroot apt autoremove -y
+    $ sudo mount-image-callback --system-resolvconf xenial.img -- chroot _MOUNTPOINT_ apt purge -y linux-virtual
+    $ sudo mount-image-callback --system-resolvconf xenial.img -- chroot _MOUNTPOINT_ apt autoremove -y
 
 Once you've got all the kernels installed, you can undo our earlier
 workaround::
 
-    $ sudo mount-image-callback xenial.img -- mchroot mv /tmp/30_os-prober /etc/grub.d
+    $ sudo mount-image-callback xenial.img -- chroot _MOUNTPOINT_ mv /tmp/30_os-prober /etc/grub.d
 
 There's one last, important thing to do, however.  When you installed
 the kernel, grub will have detected the UUID of the disk image you are
 modifying, and used it in ``/etc/grub/grub.cfg``.  We need to revert
 that change so that grub will use the label of the disk to boot::
 
-    $ sudo mount-image-callback xenial.img -- mchroot sed -i -e "s,root=[^ ]\+,root=LABEL=cloudimg-rootfs," /boot/grub/grub.cfg
+    $ sudo mount-image-callback xenial.img -- chroot _MOUNTPOINT_ sed -i -e "s,root=[^ ]\+,root=LABEL=cloudimg-rootfs," /boot/grub/grub.cfg
 
 Once you've completed all of these steps, you'll have an image with a
 different kernel installed, ready to register in your cloud.
