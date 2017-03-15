@@ -21,6 +21,12 @@ so you will need to determine how to configure it for your cloud.  For
 the remainder of this document, the examples will be the text file that
 you should configure as vendor data.
 
+.. note::
+    For cloud implementations that don't support vendor-data from the
+    metadata service, the image can be modified to provide a similar
+    effect.  See :doc:`vendor-data-via-modification` for more details
+    on how this can be achieved.
+
 Testing Vendor Data
 ~~~~~~~~~~~~~~~~~~~
 

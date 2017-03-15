@@ -10,6 +10,8 @@ so can be installed like so::
 Alternatively, it can be found in the upstream bzr branch at
 ``lp:cloud-utils``.
 
+.. _basic-mount-image-callback-usage:
+
 Basic ``mount-image-callback`` Usage
 -------------------------------------
 

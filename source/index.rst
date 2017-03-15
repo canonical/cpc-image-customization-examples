@@ -22,6 +22,7 @@ customized to suit the needs and requirements of cloud partners.
    methods
    pre-boot
    first-boot
+   vendor-data-via-modification
 
 
 Indexes and tables
