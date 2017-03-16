@@ -10,6 +10,10 @@ This documentation provides examples of the ways in which the base
 Ubuntu cloud images from http://cloud-images.ubuntu.com can be
 customized to suit the needs and requirements of cloud partners.
 
+If you have any questions, or would like any examples added, please
+`file an issue on GitHub
+<https://github.com/CanonicalLtd/cpc-image-customization-examples/issues>`_.
+
 .. note::
     This documentation is not intended for use by end-users of clouds,
     but by cloud vendors themselves.  If that doesn't describe you,
