@@ -1,2 +1,9 @@
+bootable
+bzr
+chroot'd
 cpc
 pre
+uninstall
+unmounts
+utils
+xenial
