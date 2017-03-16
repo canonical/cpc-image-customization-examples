@@ -17,7 +17,7 @@ So we just write our configuration out there::
 
     $ sudo mount-image-callback xenial.img -- chroot _MOUNTPOINT_ tee /etc/cloud/cloud.cfg.d/99_vendor.cfg << EOF
     #cloud-config
-    user: default-user
+    user: new-default-user
     EOF
 
 When it runs, ``cloud-init`` will discover this configuration and use
