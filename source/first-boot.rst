@@ -35,6 +35,18 @@ exactly the same way.  This means that you can easily test vendor-data
 that you're writing by passing it to an instance you're launching as
 user-data.
 
+More Information About Vendor Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`The cloud-init documentation for vendor data
+<http://cloudinit.readthedocs.io/en/latest/topics/vendordata.html>`_
+covers in more detail exactly how vendor data is processed, including
+how it interacts with user data.
+
+Documentation about the OpenStack implementation can be found `in the
+nova documentation
+<https://docs.openstack.org/developer/nova/vendordata.html>`_.
+
 Using an Alternative Default User
 ---------------------------------
 
